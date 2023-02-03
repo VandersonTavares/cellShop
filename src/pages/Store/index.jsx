@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsFillCartCheckFill, BsFillCartPlusFill } from "react-icons/bs";
+import { setItem, getItem } from "../../services/LocalStorage";
 
 const Store = () => {
   const [data, setData] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(getItem('carinho') || []);
 
   useEffect(() => {
     axios
@@ -23,14 +24,17 @@ const Store = () => {
     if(element){
         const arrFilter = cart.filter((e)=> e.id !== obj.id)
         setCart(arrFilter);
+        setItem('carrinho', arrFilter);
     }else{
         setCart([...cart, obj])
+        setItem('carrinho', [...cart, obj]);
     }
   }
 
   return (
     <div>
       <h1>Store</h1>
+      <hr />
       <div>
         {data.map((e) => {
           return (
