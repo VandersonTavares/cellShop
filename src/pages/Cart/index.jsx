@@ -55,7 +55,7 @@ function Cart() {
                         <div key={item.id}>
                             <h4>{item.title}</h4>
                             <img src={item.thumbnail} alt="img-pic" />
-                            <h4>R${item.price}</h4>
+                            <h4>R${item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</h4>
                             <button onClick={() => removeItem(item)}>
                                 <BsFillCartDashFill />
                             </button>
