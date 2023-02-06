@@ -15,8 +15,10 @@ const Container = styled.div`
   }
   h3 {
     margin-top: 20px;
+    color: crimson;
+
   }
-  span{
+  span {
     font-size: 70px;
   }
 `;
@@ -33,13 +35,31 @@ const ProductContainer = styled.div`
   div {
     height: 320px;
     width: 250px;
-    border: 1px solid black;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+
+    -webkit-box-shadow: 0px 5px 12px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 12px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 12px -3px rgba(0, 0, 0, 0.75);
   }
+
+  .price {
+    font-size: 25px;
+    color: crimson;
+  }
+  .title {
+    color: hsl(24deg 2% 50%);
+  }
+
   button {
     font-size: 20px;
   }
@@ -47,16 +67,12 @@ const ProductContainer = styled.div`
 
 function Cart() {
   const [data, setData] = useState(getItem("carrinho") || []);
-  
+
   const subTotal = data
     .reduce((acc, curr) => acc + curr.price, 0)
     .toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-    if(getItem('carrinho').lenght <= 0){
-        console.log("é")
-    }
-
-   function removeItem(obj) {
+  function removeItem(obj) {
     const arrFilter = data.filter((item) => item.id !== obj.id);
     setData(arrFilter);
     setItem("carrinho", arrFilter);
@@ -67,7 +83,7 @@ function Cart() {
       <h1>Página Carrinho</h1>
       <hr />
       {/* adicionar verificação condicional */}
-      {true ? ( 
+      {true ? (
         <h3>Subtotal: {subTotal}</h3>
       ) : (
         <div>
@@ -83,10 +99,9 @@ function Cart() {
         {data.map((item) => {
           return (
             <div key={item.id}>
-              <h4>{item.title}</h4>
+              <h4 className="title">{item.title}</h4>
               <img src={item.thumbnail} alt="img-pic" />
-              <h4>
-                R$
+              <h4 className="price">
                 {item.price.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "BRL",

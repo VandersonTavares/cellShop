@@ -10,11 +10,10 @@ import Alert from "../../components/Alert";
 const Container = styled.div`
   margin-left: 60px;
 
-  h1{
+  h1 {
     padding: 20px;
   }
-  
-`
+`;
 
 const StoreContainer = styled.div`
   display: flex;
@@ -28,18 +27,33 @@ const StoreContainer = styled.div`
   div {
     height: 320px;
     width: 250px;
-    border: 1px solid black;
+
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 0px solid #000000;
+
+    -webkit-box-shadow: 0px 5px 12px -3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 12px -3px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 12px -3px rgba(0, 0, 0, 0.75);
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+
+    .price{
+      font-size: 25px;
+      color: crimson;
+    }
+    .title{
+      color: hsl(24deg 2% 50%);
+    }
   }
   button {
     font-size: 20px;
     width: 30px;
-    
-    
   }
 `;
 
@@ -82,17 +96,16 @@ function Store() {
   return (
     <Container>
       {isRemoved && <Alert />}
-      <h1>Página Stores</h1>
-      
+      <h1>Página Store</h1>
+
       <hr />
       <StoreContainer>
         {list.map((item) => {
           return (
             <div key={item.id}>
-              <h4>{item.title}</h4>
+              <h4 className="title">{item.title}</h4>
               <img src={item.thumbnail} alt="img-pic" />
-              <h4>
-                R$
+              <h4 className="price">
                 {item.price.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "BRL",
