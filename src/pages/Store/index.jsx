@@ -82,7 +82,7 @@ function Store() {
   return (
     <Container>
       {isRemoved && <Alert />}
-      <h1>Página Store</h1>
+      <h1>Página Stores</h1>
       
       <hr />
       <StoreContainer>
