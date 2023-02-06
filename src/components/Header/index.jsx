@@ -1,38 +1,29 @@
-import React from "react"
+import React from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
 
-const HeaderArea = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: crimson;
-    gap: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    
-    a{
-        text-decoration: none;
-    }
+import { ImCart } from "react-icons/im";
+import { AiFillHome } from "react-icons/ai";
 
-    .active{
-        color: white;
-    }
-
-    a:hover{
-        color: white;
-    }
-`
-
+import "./styles.css";
 
 const Header = () => {
-    return (
-        <HeaderArea>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/cart">Carrinho</NavLink>
-        </HeaderArea>
-    )
-}
-export default Header
+  return (
+    <div className="nav">
+      <ul>
+        <li>
+          <NavLink to="/">
+            <AiFillHome className="icon" />
+            <span className="title">Home</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/cart">
+            <ImCart className="icon" />
+            <span className="title">Carrinho</span>
+          </NavLink>
+        </li>
+      </ul>
+    </div>
+  );
+};
+export default Header;
